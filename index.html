@@ -1368,13 +1368,15 @@
 
         return ( <div className="d-flex flex-column">
             <ReactBootstrap.Tabs defaultActiveKey="jenga" id="tabs">
-                <ReactBootstrap.Tab eventKey="jenga" title="Jenga" className="d-flex flex-column justify-content-between">
-                    <Jenga assignments={assignments}/>
-                    <ReactBootstrap.Navbar className="fixed-bottom" bg="light">
-                        <ReactBootstrap.Container>
-                            <ReactBootstrap.Navbar.Brand target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScXoZnWaCW5r-ZvZCmV5wn22WBZFQBPE4bsme51fSMyd-abZQ/viewform">Submit a Rule</ReactBootstrap.Navbar.Brand>
-                        </ReactBootstrap.Container>
-                    </ReactBootstrap.Navbar>
+                <ReactBootstrap.Tab eventKey="jenga" title="Jenga">
+                    <div lassName="d-flex flex-column justify-content-between">
+                        <Jenga assignments={assignments}/>
+                        <ReactBootstrap.Navbar className="fixed-bottom" bg="light">
+                            <ReactBootstrap.Container>
+                                <ReactBootstrap.Navbar.Brand target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScXoZnWaCW5r-ZvZCmV5wn22WBZFQBPE4bsme51fSMyd-abZQ/viewform">Submit a Rule</ReactBootstrap.Navbar.Brand>
+                            </ReactBootstrap.Container>
+                        </ReactBootstrap.Navbar>
+                    </div>
                 </ReactBootstrap.Tab>
                 <ReactBootstrap.Tab eventKey="fast" title="Fast">
                     <ReactBootstrap.Button onClick={() => setMessage(_.sample(data).rule)}>Click</ReactBootstrap.Button>
