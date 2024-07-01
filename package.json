@@ -1,0 +1,12 @@
+{
+  "name": "party_jenga",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "rules": "python importDataFromSheet.py",
+    "start": "python -m http.server 9000"
+  },
+  "author": "",
+  "license": "ISC"
+}
