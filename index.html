@@ -19,1096 +19,46 @@
 <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script>
 
 <script type="text/javascript">
-    const data = [
-    {
-        "rule": "Pick someone to take with you to the dark room (5 minutes)",
-        "weight": 3,
-        "level": 4,
-        "category": "Physical"
-    },
-    {
-        "rule": "Poll the room for a partner and take them to the dark room",
-        "level": 4,
-        "category": "Physical"
-    },
-    {
-        "rule": "Pick someone to take with you to the dark room (20 minutes)",
-        "level": 5,
-        "category": "Physical"
-    },
-    {
-        "rule": "Spin the bottle, take the person it points to with you to the dark room",
-        "level": 5,
-        "category": "Physical"
-    },
-    {
-        "rule": "Pick two people to go to the Darkroom with you",
-        "level": 5,
-        "category": "Physical"
-    },
-    {
-        "rule": "Pick a prop and a person, take both to the Darkroom",
-        "level": 5,
-        "category": "Physical"
-    },
-    {
-        "rule": "Drink and draw another",
-        "level": 1,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Drink twice",
-        "level": 1,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Nose goes, last person drinks",
-        "weight": 2,
-        "level": 1,
-        "category": "Drinking",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "Swap drinks with someone",
-        "level": 1,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Take a shot of your choice with someone of your choice",
-        "weight": 2,
-        "level": 2,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Taste everyone's drink (exceptions made for illness)",
-        "level": 2,
-        "category": "Drinking"
-    },
-    {
-        "rule": "The most sober person and the most drunk person swap drinks (as decided by the mob)",
-        "level": 2,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Poll the room for a drink choice, pour it and double fist",
-        "level": 2,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Give someone a shot of your choice",
-        "level": 2,
-        "category": "Drinking"
-    },
-    {
-        "rule": "\"Snowball\" a shot. No semen.",
-        "level": 3,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Everyone has a gulp of their drink",
-        "level": 3,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Flip a coin 5 times, drink for each head.. Someone of your choice drinks your tails",
-        "level": 3,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Someone offers you a drink, you finish it",
-        "level": 3,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Everyone shares a tasty shot!",
-        "weight": 2,
-        "level": 4,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Shotgun something (traditionally a beer)",
-        "level": 4,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Mini kings cup, everyone pours some drink into a cup, you drink it",
-        "weight": 2,
-        "level": 5,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Waterfall. ENDING with you",
-        "level": 5,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Waterfall. Starting with you",
-        "level": 5,
-        "category": "Drinking"
-    },
-    {
-        "rule": "Choose a rule that has already been played this round and do it, bitch",
-        "level": 1,
-        "category": "Gameplay",
-        "originator": "Kenzie"
-    },
-    {
-        "rule": "Drinking buddy! ",
-        "weight": 2,
-        "level": 1,
-        "category": "Gameplay",
-        "subcategory": "Drinking"
-    },
-    {
-        "rule": "Invent a new Jenga rule and insert it into the spreadsheet",
-        "weight": 5,
-        "level": 1,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Play the remainder of the round with your non-dominant hand. If you finish the round without knocking over the tower, ask someone of your choice for a 5 second make-out",
-        "level": 1,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Pull 3 more blocks. Assign one to each neighbor and keep one for yourself",
-        "level": 1,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Start with the prompt \"You must\", go around the circle, everyone saying one word to make up the rule",
-        "weight": 2,
-        "level": 1,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Swap drinks with someone",
-        "level": 1,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "The next two people draw at the same time, last block placed drinks",
-        "level": 1,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Choose a partner. Kiss to solidify your union, they now share your fate for every action you get. Union is nullified at end of round.",
-        "level": 2,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Give your drink to a person of your choice, they double fist the drinks. If one or neither of you has a drink frolick with your partner and get another.",
-        "level": 2,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Group chooses an action, you and your neighbors do that action ",
-        "level": 2,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Pick 2 people, they share each other's fate",
-        "level": 2,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Room Werewolf picks a partner. Kiss to solidify your union, they now share your fate for every action you get. Union is nullified at end of round.",
-        "level": 2,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "The person to your right chooses an action off the list and you do it",
-        "weight": 2,
-        "level": 2,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Choose a category, a level, and a person, that person does an appropriate action",
-        "level": 3,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Pick a random number and do that action",
-        "weight": 2,
-        "level": 3,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Room decides on a random number, you do that action",
-        "level": 3,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Pick 3 numbers, do those actions",
-        "level": 4,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Pull 4 more blocks. Assign one to each neighbor and keep two for yourself",
-        "level": 4,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Pull another block, everyone does that action",
-        "level": 5,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Pull blocks off of the top of the tower and give one to each person in the circle, everyone does the action and the blocks are set aside for the rest of the game",
-        "level": 5,
-        "category": "Gameplay"
-    },
-    {
-        "rule": "Choose two people in the room, they kiss.",
-        "weight": 2,
-        "level": 1,
-        "category": "Physical"
-    },
-    {
-        "rule": "Everyone, turn to your right and give the person in front of you a massage!",
-        "level": 2,
-        "category": "Physical"
-    },
-    {
-        "rule": "Give someone a hand hug.",
-        "level": 1,
-        "category": "Physical"
-    },
-    {
-        "rule": "Group HUG.. EVERYONE GO",
-        "level": 1,
-        "category": "Physical"
-    },
-    {
-        "rule": "lounge on a bench of people (at least 3) for 1 round",
-        "level": 1,
-        "category": "Physical"
-    },
-    {
-        "rule": "Take duck-face selfie with 2 neighbors. Text it to someone who is not here, but should be.",
-        "level": 1,
-        "category": "Physical"
-    },
-    {
-        "rule": "10 seconds of makeouts with rooms choice. Room counts loudly.",
-        "weight": 2,
-        "level": 2,
-        "category": "Physical"
-    },
-    {
-        "rule": "Cuddle with your neighbors",
-        "level": 2,
-        "category": "Physical"
-    },
-    {
-        "rule": "Go squeeze onto the couch, if you're already there pick someone to squeeze onto your couch!",
-        "level": 2,
-        "category": "Physical"
-    },
-    {
-        "rule": "Kiss someone you haven't kissed before, if you've kissed everyone, kiss everyone",
-        "weight": 2,
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Kiss anyone who is in their underwear or less",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Kiss all the long-haired people",
-        "weight": 2,
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Kiss all the short-hair people",
-        "weight": 2,
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Kiss all the things",
-        "weight": 3,
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Kiss Julian",
-        "level": 2,
-        "category": "Physical"
-    },
-    {
-        "rule": "Kiss the bar bitch",
-        "level": 2,
-        "category": "Physical"
-    },
-    {
-        "rule": "Kiss your neighbors",
-        "weight": 2,
-        "level": 2,
-        "category": "Physical"
-    },
-    {
-        "rule": "Lay across the laps of the people sitting on the couch",
-        "level": 1,
-        "category": "Physical"
-    },
-    {
-        "rule": "Sit on the lap of the person to your right. Sexy hip wiggle.",
-        "level": 2,
-        "category": "Physical"
-    },
-    {
-        "rule": "Sit on the lap of the person you would like to make out with right now. No makeouts allowed!!!",
-        "level": 2,
-        "category": "Physical"
-    },
-    {
-        "rule": "Spin the bottle and kiss the person it points to",
-        "level": 2,
-        "category": "Physical"
-    },
-    {
-        "rule": "The person to your right spanks your bottom",
-        "level": 2,
-        "category": "Physical"
-    },
-    {
-        "rule": "Find a partner, mime some sex, fake an orgasm",
-        "level": 3,
-        "category": "Physical",
-        "subcategory": "Truth"
-    },
-    {
-        "rule": "Grope someone of group choice on body part of victim's choice",
-        "weight": 2,
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Grope someone of your choice in a location of their choice.",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Kiss all the things with tongue",
-        "weight": 2,
-        "level": 4,
-        "category": "Physical"
-    },
-    {
-        "rule": "Makeout with rooms choice until it gets awkward.",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Pick someone standing, they sit on one of your neighbor's laps (if nobody is standing, you choose)",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Pick two people in the circle, they make out long and sensually",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Sit on the lap of the person to your right and grind for 5 seconds.",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Someone does a body shot off you",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Spank your neighbors simultaneously",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Spin the bottle and make out with the peson it points to (5 seconds!)",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Spin the bottle, french kiss the person it points to",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Spin the bottle, sit behind the person it points to, wrap your arms around them, and whisper sweet nothings into their ear",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Swap seats with the person next to the person you’d like to make out with and...",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "You, the person to your left, and the person to your right attempt a 3-way kiss",
-        "level": 4,
-        "category": "Physical"
-    },
-    {
-        "rule": "Room chooses 2 other people, you attempt a 3-way kiss",
-        "weight": 2,
-        "level": 4,
-        "category": "Physical"
-    },
-    {
-        "rule": "Your neighbors both spank you",
-        "weight": 2,
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "All guests grope a host.",
-        "level": 4,
-        "category": "Physical"
-    },
-    {
-        "rule": "Bend over the table, everyone spanks you!",
-        "level": 4,
-        "category": "Physical"
-    },
-    {
-        "rule": "Choose a person, they pick a body part and you grope it sensually ",
-        "level": 4,
-        "category": "Physical"
-    },
-    {
-        "rule": "Give each person in the circle a long close hug complete with back rubs and butt grabs",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "Give someone a lap dance.",
-        "weight": 2,
-        "level": 4,
-        "category": "Physical"
-    },
-    {
-        "rule": "Spin the bottle, lick the neck of the person that it points to and (if consent) give bite.",
-        "level": 3,
-        "category": "Physical"
-    },
-    {
-        "rule": "spin the bottle, the person it points to chooses an action and asks to perform it on you. You can counter-negotiate",
-        "weight": 3,
-        "level": 5,
-        "category": "Physical"
-    },
-    {
-        "rule": "Take a body shot off someone.",
-        "weight": 2,
-        "level": 4,
-        "category": "Physical",
-        "subcategory": "Drinking"
-    },
-    {
-        "rule": "Person of your choice removes an article of clothing.",
-        "weight": 2,
-        "level": 1,
-        "category": "Strip"
-    },
-    {
-        "rule": "Remove an article of clothing or take a shot",
-        "level": 1,
-        "category": "Strip"
-    },
-    {
-        "rule": "Show us your undergarment(s)",
-        "level": 1,
-        "category": "Strip"
-    },
-    {
-        "rule": "Hosts remove an article of clothing (undergarments are safe)",
-        "level": 2,
-        "category": "Strip"
-    },
-    {
-        "rule": "Pick three people, they remove an article of clothing each.",
-        "level": 2,
-        "category": "Strip"
-    },
-    {
-        "rule": "Strip 1",
-        "weight": 2,
-        "level": 2,
-        "category": "Strip"
-    },
-    {
-        "rule": "Three articles of clothing in the room must be removed from persons in the room. At least one from you. (undergarments safe)",
-        "level": 2,
-        "category": "Strip"
-    },
-    {
-        "rule": "Remove any undergarments still covered by outerwear",
-        "level": 2,
-        "category": "Strip"
-    },
-    {
-        "rule": "Anyone still wearing more than one layer (top or bottom) removes the bottom layer and keeps the top one",
-        "level": 2,
-        "category": "Strip"
-    },
-    {
-        "rule": "Everyone passes an article of clothing to their left, the recipient wears it",
-        "level": 2,
-        "category": "Strip"
-    },
-    {
-        "rule": "Remove an article of clothing (minor strip tease)",
-        "weight": 2,
-        "level": 2,
-        "category": "Strip",
-        "subcategory": "Physical"
-    },
-    {
-        "rule": "Someone of your choice removes an article of clothing",
-        "level": 2,
-        "category": "Strip"
-    },
-    {
-        "rule": "Someone of your choice removes an article of clothing (minor strip tease)",
-        "level": 2,
-        "category": "Strip"
-    },
-    {
-        "rule": "Swap clothes with someone",
-        "weight": 2,
-        "level": 2,
-        "category": "Strip"
-    },
-    {
-        "rule": "Swap clothes with someone of a different gender",
-        "weight": 2,
-        "level": 2,
-        "category": "Strip"
-    },
-    {
-        "rule": "Pick a color, all articles of clothing that match that color come off",
-        "level": 2,
-        "category": "Strip"
-    },
-    {
-        "rule": "All guests remove an article of clothing (undergarments are safe)",
-        "level": 3,
-        "category": "Strip"
-    },
-    {
-        "rule": "Everyone removes an article of outer clothing. If they are already in underwear, drink instead!",
-        "level": 3,
-        "category": "Strip"
-    },
-    {
-        "rule": "Everyone takes an article of clothing off, undergarments are safe ",
-        "level": 3,
-        "category": "Strip"
-    },
-    {
-        "rule": "Everyone removes an article of outer clothing. If they are already in underwear, they kiss you.",
-        "level": 3,
-        "category": "Strip",
-        "subcategory": "Physical"
-    },
-    {
-        "rule": "Pass your entire outfit (underwear excluded) to your left",
-        "weight": 2,
-        "level": 3,
-        "category": "Strip"
-    },
-    {
-        "rule": "Strip to your undergarments",
-        "level": 3,
-        "category": "Strip"
-    },
-    {
-        "rule": "All hosts remove an article of clothing (undergarments are safe)",
-        "level": 3,
-        "category": "Strip"
-    },
-    {
-        "rule": "Remove an article of clothing, a person of your choice removes the same article of clothing.",
-        "level": 3,
-        "category": "Strip"
-    },
-    {
-        "rule": "Swap clothes with someone of room's choice",
-        "level": 3,
-        "category": "Strip"
-    },
-    {
-        "rule": "Take three articles of clothing from the group. Put them on and perform a strip tease.",
-        "level": 3,
-        "category": "Strip"
-    },
-    {
-        "rule": "Remove an article of clothing. If at minimum clothing, do a sexy dance.",
-        "level": 4,
-        "category": "Strip"
-    },
-    {
-        "rule": "Everyone takes an article of clothing off.",
-        "level": 4,
-        "category": "Strip"
-    },
-    {
-        "rule": "Remove 3 articles of clothing excluding underwear, if you run out of clothes, the person to your right removes them instead",
-        "level": 4,
-        "category": "Strip"
-    },
-    {
-        "rule": "Spin the bottle, undress the person it points to.",
-        "level": 4,
-        "category": "Strip"
-    },
-    {
-        "rule": "Rotate clothes around the circle, undergarments are safe",
-        "level": 4,
-        "category": "Strip"
-    },
-    {
-        "rule": "Take your neighbors clothes off... with your teeth (down to underwear)",
-        "level": 4,
-        "category": "Strip"
-    },
-    {
-        "rule": "Look to the left and find the next person wearing a bra, they take their shirt off and you get 5 seconds to take the bra off with one hand while they face you. Group counts",
-        "level": 5,
-        "category": "Strip"
-    },
-    {
-        "rule": "Spin the bottle, undress the person it points to to their underwear using one hand",
-        "level": 5,
-        "category": "Strip"
-    },
-    {
-        "rule": "Rotate clothes around the circle, undergarments are NOT safe",
-        "level": 5,
-        "category": "Strip"
-    },
-    {
-        "rule": "Swap underwear with someone",
-        "level": 5,
-        "category": "Strip"
-    },
-    {
-        "rule": "Choose a person, both you and they strip to the birthday suit!",
-        "level": 5,
-        "category": "Strip"
-    },
-    {
-        "rule": "Strip to your undergarments, a person of your choice does as well",
-        "level": 5,
-        "category": "Strip"
-    },
-    {
-        "rule": "What is the most embarassing nickname you've ever gone by and why",
-        "level": 1,
-        "category": "Truth"
-    },
-    {
-        "rule": "What would you do if you were the opposite sex for an hour?",
-        "level": 1,
-        "category": "Truth"
-    },
-    {
-        "rule": "When was the last time you had sex?",
-        "weight": 2,
-        "level": 1,
-        "category": "Truth"
-    },
-    {
-        "rule": "How old were you when you lost your virginity?",
-        "level": 1,
-        "category": "Truth"
-    },
-    {
-        "rule": "Describe your shittiest first date",
-        "level": 2,
-        "category": "Truth"
-    },
-    {
-        "rule": "Room chooses 3 public/historical figures, choose one to marry, one to fuck, one to kill",
-        "level": 2,
-        "category": "Truth"
-    },
-    {
-        "rule": "The person to your right offers a \"would you rather\" with two options",
-        "level": 2,
-        "category": "Truth"
-    },
-    {
-        "rule": "Describe losing your virginity in 5 words or more.",
-        "level": 2,
-        "category": "Truth"
-    },
-    {
-        "rule": "Approximately how many people have you had sex with? (use your own definition of sex, people, and approximately)",
-        "level": 2,
-        "category": "Truth"
-    },
-    {
-        "rule": "Tell us about a specific genre/type/keyword of porn that you'd recommend and why",
-        "weight": 3,
-        "level": 2,
-        "category": "Truth"
-    },
-    {
-        "rule": "The world ends tomorrow at midnight, what (or who) do you spend your remaining hours doing?",
-        "level": 2,
-        "category": "Truth"
-    },
-    {
-        "rule": "Whos body would you swap with for a day? (in this room)",
-        "level": 2,
-        "category": "Truth"
-    },
-    {
-        "rule": "If you were immune to legal repercussions for 24 hours, what would youd do?",
-        "level": 2,
-        "category": "Truth"
-    },
-    {
-        "rule": "tell us something we don't know.",
-        "level": 2,
-        "category": "Truth"
-    },
-    {
-        "rule": "Have you ever had a one night stand? Tell us about it! Or make something up.",
-        "level": 3,
-        "category": "Truth"
-    },
-    {
-        "rule": "Tell us a sex tip! ",
-        "weight": 2,
-        "level": 3,
-        "category": "Truth"
-    },
-    {
-        "rule": "Who would have sex with in this room? (choose one)",
-        "level": 3,
-        "category": "Truth"
-    },
-    {
-        "rule": "Describe the last time you had sex. (gory detail optional)",
-        "level": 3,
-        "category": "Truth"
-    },
-    {
-        "rule": "Weirdest/most interesting sex location you have used? Tell us about it",
-        "level": 3,
-        "category": "Truth"
-    },
-    {
-        "rule": "What kind of porn do you usually watch? and why?",
-        "weight": 2,
-        "level": 3,
-        "category": "Truth"
-    },
-    {
-        "rule": "Would you take it in the butt?",
-        "level": 3,
-        "category": "Truth"
-    },
-    {
-        "rule": "Person to your right whispers a sex position, you draw it, if nobody guesses in 20s you drink!",
-        "level": 4,
-        "category": "Truth"
-    },
-    {
-        "rule": "Describe your hottest fantasy in pantomime",
-        "level": 4,
-        "category": "Truth",
-        "subcategory": "Physical"
-    },
-    {
-        "rule": "Which two people in this room would you like to see fuck?",
-        "level": 4,
-        "category": "Truth"
-    },
-    {
-        "rule": "Who in this room have you seen naked? describe situation around one.",
-        "level": 4,
-        "category": "Truth"
-    },
-    {
-        "rule": "Who in this room do you most want to see naked?",
-        "level": 4,
-        "category": "Truth"
-    },
-    {
-        "rule": "What sex act would you never do again",
-        "level": 5,
-        "category": "Truth"
-    },
-    {
-        "rule": "Who is the most inappropriate person you've had a sexual fantasy about",
-        "level": 4,
-        "category": "Truth"
-    },
-    {
-        "rule": "What is your most memorable sexual experience?",
-        "level": 4,
-        "category": "Truth"
-    },
-    {
-        "rule": "Who is the most inappropriate person you've slept with",
-        "level": 4,
-        "category": "Truth"
-    },
-    {
-        "rule": "What's your biggest sexual fear/insecurity?",
-        "level": 5,
-        "category": "Truth"
-    },
-    {
-        "rule": "Tell us about a recent sex dream you've had",
-        "level": 4,
-        "category": "Truth"
-    },
-    {
-        "rule": "What is the kinkiest thing you've ever done? your standards",
-        "level": 5,
-        "category": "Truth"
-    },
-    {
-        "rule": "What's your favorite position? Demonstrate it for us!",
-        "level": 5,
-        "category": "Truth",
-        "subcategory": "Physical"
-    },
-    {
-        "rule": "Who is the first person you would have sex with in this room except current partner(s)",
-        "level": 5,
-        "category": "Truth"
-    },
-    {
-        "rule": "If you had to choose one animal to fuck, what would it be?",
-        "level": 5,
-        "category": "Truth"
-    },
-    {
-        "rule": "Who do you secretly have a crush on? (prefer parties present)",
-        "weight": 2,
-        "level": 5,
-        "category": "Truth"
-    },
-    {
-        "rule": "Scroll through your contacts list and stop randomly, tell me the sexiest thing you know about them. Roll again, if nothing comes to mind",
-        "level": 3,
-        "category": "Truth",
-        "originator": "Kenzie"
-    },
-    {
-        "rule": "Suck on someone's nipples",
-        "level": 5,
-        "category": "Physical",
-        "originator": "Kenzie"
-    },
-    {
-        "rule": "Sit in someone's lap, grind on them, make out with them, and grope as consented",
-        "level": 5,
-        "category": "Physical",
-        "originator": "Julian"
-    },
-    {
-        "rule": "Group picks a body part, you make out with it on a person of your choice",
-        "level": 5,
-        "category": "Physical"
-    },
-    {
-        "rule": "Loudly declare \"flip a bitch\", take another turn, play continues in reverse",
-        "weight": 1,
-        "level": 1,
-        "category": "Gameplay",
-        "originator": "Cole"
-    },
-    {
-        "rule": "Tell us about the weirdest fetish that you have personal experience with, careful not to out anyone!",
-        "level": 2,
-        "category": "Truth"
-    },
-    {
-        "rule": "Werewolf point, that person removes an article of clothing",
-        "weight": 3,
-        "level": 2,
-        "category": "Strip",
-        "originator": "Cole"
-    },
-    {
-        "rule": "Werewolf point, kiss that person",
-        "weight": 2,
-        "level": 2,
-        "category": "Physical",
-        "originator": "Cole"
-    },
-    {
-        "rule": "Werewolf point, make out with that person",
-        "weight": 2,
-        "level": 3,
-        "category": "Physical",
-        "originator": "Cole"
-    },
-    {
-        "rule": "Dry hump someone",
-        "level": 5,
-        "category": "Physical",
-        "originator": "Julian"
-    },
-    {
-        "rule": "Choose a polycule present in the house and kiss everyone in it!",
-        "level": 2,
-        "category": "Physical",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "You and a partner (group's choice) use a sexy toy on each other (victim's choice)",
-        "level": 4,
-        "category": "Physical",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "Choose 4 people to spank you without knowing the order. Try to guess who was who. Take a drink for each wrong guess and kiss whoever you guessed correctly.",
-        "level": 3,
-        "category": "Physical",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "Pick three people to kiss you, but only one of them does. Close your eyes and try to guess who kissed you. Take a drink if wrong, kiss all three peeps if correct.",
-        "level": 2,
-        "category": "Physical",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "Close your eyes and keep them closed. Group werewolf points to the person who kisses you. Correct guess gets you a kiss from everyone in the circle. Wrong guess means you do a body shot off the kisser.",
-        "level": 4,
-        "category": "Physical",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "Pick a partner. You both have to try to take an article of clothing off of the other person at the same time",
-        "level": 2,
-        "category": "Strip",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "Any time two partners kiss you may kiss them as well",
-        "level": 3,
-        "category": "Gameplay",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "What kink are you most interested to try and why?",
-        "weight": 2,
-        "level": 1,
-        "category": "Truth",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "What sex position did you always want to try but haven't gotten around to it?",
-        "weight": 2,
-        "level": 1,
-        "category": "Truth",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "Group picks a (not uncommon) word you can't say. If you slip up and say it you have to strip 1 or take a drink",
-        "level": 2,
-        "category": "Gameplay",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "Make out with the persn on your right",
-        "level": 1,
-        "category": "Physical"
-    },
-    {
-        "rule": "When a tile comes up odd you have to divulge a fantasy, a crush (preferably in-house), a kink you want to try, or take a shot",
-        "level": 4,
-        "category": "Gameplay",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "Pick a partner. Lock elbows with them and finish your drinks. If one or neither of you has a drink, go get one.",
-        "level": 2,
-        "category": "Gameplay",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "Pick a partner. You both get a shot and lock elbows. Take your shot at the same time.",
-        "level": 2,
-        "category": "Gameplay",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "Choose a partner. Kiss to solidify your union, they now share your fate for every action you get. For every subsequent round add another player to your party.",
-        "level": 1,
-        "category": "Gameplay",
-        "originator": "Kaitlin"
-    },
-    {
-        "rule": "It's onesie oclock. You know you have e,m: everyone puts them one",
-        "level": 2,
-        "category": "Strip"
-    },
-    {
-        "rule": "For the rest of the game, all kisses must have full eye contact",
-        "level": 3,
-        "category": "Gameplay",
-        "originator": "Maria"
-    },
-    {
-        "rule": "Pick a partner, sit knee to knee, hold both hands, make eye contact and hold for 30 seconds",
-        "level": 2,
-        "category": "Physical",
-        "originator": "Julian and Maria"
-    }
-];
-
-    const categories = _.uniq(_.map(data,"category"));
-    const flatWeights = _.zipObject(categories,_.map(categories,() => [1,1,1,1,1]));
-    const defaultPresets = [
-        {
-            "name": "Flat",
-            "weights": flatWeights
-        },
-        {
-            "name": "Round 1",
-            "weights": {
+    const processData = data => {
+        const categories = _.uniq(_.map(data,"category"));
+        const flatWeights = _.zipObject(categories,_.map(categories,() => [1,1,1,1,1]));
+        const defaultPresets = [
+            {
+                "name": "Flat",
+                "weights": flatWeights
+            },
+            {"name": "Round 1","weights": {
                 "Physical": [2, 3, 3, 0.25, 0],
                 "Drinking": [3, 3, 3, 4, 5],
                 "Gameplay": [1, 1, 1, 1, 1],
                 "Strip": [1.5, 1.5, 1.5, 0.5, 0.5],
                 "Truth": [1, 2, 2, 1.5, 1.5]
-            }
-        },
-        {
-            "name": "Round 2",
-            "weights": {
+            }},
+            {"name": "Round 2","weights": {
                 "Physical": [0.5, 4, 3, 3, 3],
                 "Drinking": [0, 0.75, 1.5, 1.5, 4],
                 "Gameplay": [0, 0, 0.75, 1, 1],
                 "Strip": [1, 1, 2, 3, 5],
                 "Truth": [0, 0, 0.5, 1, 1.5]
-            }
-        },
-        {
-            "name": "Round 3",
-            "weights": {
-                "Physical": [0.75, 0.75, 5, 5, 5],
-                "Drinking": [0.25, 0.25, 2, 3, 3],
-                "Gameplay": [0.75, 0.75, 0.75, 2, 3],
-                "Strip": [0, 0, 1.5, 0.25, 5],
-                "Truth": [0, 0, 0, 0.25, 1.5]
-            }
-        }
-    ];
+            }},
+            {"name": "Round 3","weights":{
+                "Physical": [ 1, 2, 4, 4, 5 ],
+                "Drinking": [ 0.25, 0.25, 2, 2, 2 ],
+                "Gameplay": [ 0.75, 0.75, 0.75, 2, 3 ],
+                "Strip": [ 0, 0, 0.5, 0.5, 1 ],
+                "Truth": [ 0, 0, 0, 0.25, 1.5 ]
+            }},
+            {"name": "Duo","weights": {
+                "Physical": [ 0, 0, 0, 0, 0 ],
+                "Drinking": [ 0, 0, 0, 0, 0 ],
+                "Gameplay": [ 0, 0, 0, 0, 0 ],
+                "Strip": [ 1, 0, 0, 0, 0 ],
+                "Truth": [ 1, 1, 1, 1, 1 ]
+            }},
+        ];
+
+        return {categories, defaultPresets}
+    }
 
     Storage.prototype.setObject = function(key, value) {
         this.setItem(key, JSON.stringify(value));
@@ -1152,7 +102,7 @@
             display:"grid",
             gridTemplateColumns: "repeat(3, 1fr)",
             gap:10,
-            gridAutoRows:"minmax(100px, auto)",
+            gridAutoRows:"minmax(85px, auto)",
         }
         const keys = _.flatten([
             [1,2,3],
@@ -1170,7 +120,7 @@
         }
         return ( <div>
             <ReactBootstrap.Form.Control type="text" value={entry} placeholder="Enter a number" />
-            <div style={gridStyle}>
+            <div style={gridStyle} className="mx-4 my-2">
                 { keys.map((key) => <ReactBootstrap.Button disabled={key==="ok" && (parseInt(entry) === null || parseInt(entry) > 52)} style={bigButtons} key={key} onClick={() => behavior[key] ? behavior[key]() : setEntry(entry+key)}>{display[key] || key}</ReactBootstrap.Button>)}
             </div>
         </div> )
@@ -1201,10 +151,11 @@
     function createWeightedRules(rules,weights) {
         const lcm = leastCommonMultiple([1,..._.compact(_.flatten(Object.values(weights)))]);
         const integerWeights =_.mapValues(weights,(arr) => _.map(arr,w => w*lcm));
-        return _.flatten(_.map(rules,(rule) => {
-            const ruleWeight = weights[rule.category][rule.level] * rule.weight;
+        const res = _.flatten(_.map(rules,(rule) => {
+            const ruleWeight = weights[rule.category][rule.level-1] * (rule.weight !== undefined ? rule.weight : 1);
             return _.times(ruleWeight,() => rule);
         }));
+        return res;
     }
 
     function generateJengaAssignments(rules,weights,optionCount) {
@@ -1213,6 +164,7 @@
             return _.times(optionCount,_.identity).reduce((acc,v) => {
                 const chosenCategories = Object.keys(acc);
                 const reducedRules = _.reject(weightedRules,(rule) => chosenCategories.includes(rule.category));
+                if (reducedRules.length === 0) return acc;
                 const chosenRule = _.sample(reducedRules);
                 acc[chosenRule.category] = chosenRule;
                 return acc;
@@ -1220,32 +172,117 @@
         });
     }
 
+    function RuleDisplay(props) {
+        return ( <ReactBootstrap.Card
+            bg={props.disabled && "secondary" || (props.selected ? "primary" : "light")}
+            text={(props.disabled && "light") || props.selected ? "light" : "dark"}
+            className={"mb-2"}
+            style={{opacity:props.disabled ? .5 : 1}}
+            onClick={props.onClick}
+            >
+            <ReactBootstrap.Card.Body className={props.compact ? "p-1" : ""}>
+                {props.tile && <ReactBootstrap.Card.Title>Tile {props.tile}</ReactBootstrap.Card.Title>}
+                {(props.rule || props.weight) && <div>
+                    {props.weight && <ReactBootstrap.Badge bg="primary" className="mx-1" >{props.weight}x</ReactBootstrap.Badge> }
+                    <ReactBootstrap.Badge bg="secondary" className="mx-1" >{props.rule.category} {props.rule.level}</ReactBootstrap.Badge>
+                    <span>{props.rule.rule}</span>
+                </div>}
+            </ReactBootstrap.Card.Body>
+        </ReactBootstrap.Card> )
+    }
+
     function Jenga(props) {
         const assignments = props.assignments;
         const [jenga,setJenga] = React.useState(null);
         const [ruleDisplay,setRuleDisplay] = React.useState(null);
         return ( <div>
-            <ReactBootstrap.Card>
-                <ReactBootstrap.Card.Body>
-                { !jenga && !ruleDisplay && <Keypad onSubmit={(value) => setJenga(value)} /> }
-                { jenga  && !ruleDisplay && <div>
-                    <ReactBootstrap.Card.Title>Tile {jenga}</ReactBootstrap.Card.Title>
-                    <ReactBootstrap.ButtonGroup vertical className="w-100">
-                        { Object.values(assignments[jenga-1]).map(rule => <ReactBootstrap.Button onClick={() => setRuleDisplay(rule)} style={bigButtons} className="mb-2" key={rule.category}>{rule.category} {rule.level}</ReactBootstrap.Button>)}
-                        <ReactBootstrap.Button style={bigButtons} onClick={() => setRuleDisplay(_.sample(Object.values(assignments[jenga-1])))}>
-                            <i class="fas fa-dice"></i>
-                        </ReactBootstrap.Button>
-                    </ReactBootstrap.ButtonGroup>
-                </div>}
-                { jenga && ruleDisplay &&  <div>
-                    <ReactBootstrap.Card.Title>Tile {jenga}</ReactBootstrap.Card.Title>
-                    <ReactBootstrap.Card.Subtitle className="text-muted">{ruleDisplay.category} {ruleDisplay.level}</ReactBootstrap.Card.Subtitle>
-                    <ReactBootstrap.Card.Text className="mt-3">{ruleDisplay.rule}</ReactBootstrap.Card.Text>
-                    <ReactBootstrap.Button onClick={() => { setJenga(null) ; setRuleDisplay(null) }} style={bigButtons}>Next tile</ReactBootstrap.Button>
-                </div> }
-                </ReactBootstrap.Card.Body>
-            </ReactBootstrap.Card>
+            { !jenga && !ruleDisplay && <Keypad onSubmit={(value) => setJenga(value)} /> }
+            { jenga  && !ruleDisplay && <div>
+                <RuleDisplay tile={jenga} />
+                <ReactBootstrap.ButtonGroup vertical className="w-100">
+                    { Object.values(assignments[jenga-1]).map(rule => <ReactBootstrap.Button onClick={() => setRuleDisplay(rule)} style={bigButtons} className="mb-2" key={rule.category}>{rule.category} {rule.level}</ReactBootstrap.Button>)}
+                    <ReactBootstrap.Button style={bigButtons} onClick={() => setRuleDisplay(_.sample(Object.values(assignments[jenga-1])))}>
+                        <i class="fas fa-dice"></i>
+                    </ReactBootstrap.Button>
+                </ReactBootstrap.ButtonGroup>
+            </div>}
+            { jenga && ruleDisplay &&  <div>
+                <RuleDisplay tile={jenga} rule={ruleDisplay} />
+                <ReactBootstrap.ButtonGroup vertical className="w-100">
+                    <ReactBootstrap.Button className="mb-2" onClick={() => { setRuleDisplay(null) }} style={bigButtons}>Back</ReactBootstrap.Button>
+                    <ReactBootstrap.Button className="mb-2" onClick={() => { setJenga(null) ; setRuleDisplay(null) }} style={bigButtons}>New tile</ReactBootstrap.Button>
+                </ReactBootstrap.ButtonGroup>
+            </div> }
         </div>);
+    }
+
+    const sampleRules = (rules,n) => {
+        const choices = [];
+        let i = 0;
+        while (choices.length < n) {
+            const newChoice = _.sample(rules);
+            const found = _.find(choices,rule => newChoice.rule === rule.rule);
+            if (!found) choices.push(newChoice);
+            if (i++ > n*10) {
+                console.log("Ending infinite loop!!",rules.length,choices);
+                break;
+            }
+        }
+
+        return choices;
+    }
+
+    const serializePreset = (preset) => {
+        const txt = `{"name":"${preset.name}","weights":{\n${_.map(categories,c => `\t"${c}":${JSON.stringify(preset.weights[c])}`).join(",\n")}\n}}`;
+        return _.map(txt.split("\n"),s => "\t\t"+s).join("\n")
+    }
+
+    function ChoiceGame(props) {
+        const rules = props.rules;
+        const [draw,setDraw] = React.useState(sampleRules(rules,props.choices))
+        const [selected,setSelected] = React.useState([]);
+        const [locked,setLocked] = React.useState(null);
+        const [chosen,setChosen] = React.useState(null);
+
+        const filterPhase = !locked && !chosen;
+        const choosePhase = locked && !chosen;
+        const displayPhase = locked && chosen;
+
+        const reset = (rules) => {
+            setChosen(null);
+            setLocked(null);
+            setSelected([]);
+            setDraw(sampleRules(rules,props.choices))
+        }
+
+        React.useEffect(() => reset(rules),[rules]);
+
+        return ( <ReactBootstrap.Container>
+            { filterPhase && <h2>Choose 2 and pass</h2> }
+            { choosePhase && <h2> Choose </h2> }
+            { displayPhase && <RuleDisplay rule={chosen} /> }
+            { !displayPhase && _.map(draw,rule => <RuleDisplay
+                disabled={locked && !locked.includes(rule)}
+                selected={selected.includes(rule)}
+                rule={rule}
+                onClick={e => locked ? setChosen(rule) : (selected.includes(rule) ? setSelected(_.without(selected,rule)) : setSelected([...selected,rule]))}
+            /> )}
+            <ReactBootstrap.ButtonGroup vertical className="w-100">
+                { filterPhase && <ReactBootstrap.Button className="mb-2" onClick={() => setLocked(selected)}>
+                    Confirm and pass
+                </ReactBootstrap.Button> }
+
+                { filterPhase && <ReactBootstrap.Button onClick={() => reset(rules)}>
+                    <i class="fas fa-dice"></i>
+                    &nbsp;
+                    Reroll
+                </ReactBootstrap.Button> }
+
+                { displayPhase && <ReactBootstrap.Button onClick={() => reset(rules)}>
+                    Next
+                </ReactBootstrap.Button> }
+            </ReactBootstrap.ButtonGroup>
+        </ReactBootstrap.Container> )
     }
 
     function ConfigPresetSelector(props) {
@@ -1289,11 +326,34 @@
         </ReactBootstrap.Modal> );
     }
 
+    const countRules = (rules) => {
+        const grouped = _.groupBy(rules,"rule");
+        const res = _.reverse(_.sortBy(_.map(Object.entries(grouped),entry => {
+            const [ruleText,rules] = entry;
+            const rule = _.first(rules);
+            const count = rules.length;
+            return {rule,count};
+        }),["count"]));
+        return res;
+    }
+
+    function JengaPane(props) {
+        return ( <ReactBootstrap.Tab.Pane eventKey={props.eventKey} className="p-2 overflow-auto flex-column">
+            <ReactBootstrap.Alert variant="primary" className="text-center h2">{props.title}</ReactBootstrap.Alert>
+            <div className="d-flex flex-column justify-content-between overflow-auto">
+                {props.children}
+            </div>
+        </ReactBootstrap.Tab.Pane>);
+    }
+
     function App(props) {
         const jengaChoices = 3;
+        const data = props.data;
+        const {defaultPresets, categories} = processData(data);
 
         const [weights,setWeights] = React.useState(localStorage.getObject("weights") || _.first(defaultPresets).weights);
-        const [message,setMessage] = React.useState("");
+        const [weightedRules,setWeightedRules] = React.useState(createWeightedRules(data,weights));
+        const [rule,setRule] = React.useState(null);
         const [showSaveModal,setShowSaveModal] = React.useState(false);
         const [preset,setPreset] = React.useState(localStorage.getObject("preset") || _.first(defaultPresets).name);
         const [userPresets,setUserPresets] = React.useState(localStorage.getObject("presets") || defaultPresets);
@@ -1307,6 +367,10 @@
             setPreset("custom");
             setWeights(weights);
         },[]);
+
+        React.useEffect(() => {
+            setWeightedRules(createWeightedRules(data,weights));
+        },[weights]);
 
         const configSelected = (weights, name) => {
             name = name || "custom";
@@ -1343,7 +407,6 @@
 
         const savePreset = (preset, weights) => {
             const existing = _.find(userPresets,{"name":preset});
-            console.log("saving..",{preset,weights,existing});
             if (existing) {
                 existing.weights = weights;
             } else {
@@ -1359,6 +422,8 @@
             setShowSaveModal(false);
             setPreset(preset);
             localStorage.setObject("preset",preset);
+
+            console.log(_.map(newPresets,preset => serializePreset(preset)).join(",\n"));
         }
 
         const resetPresets = () => {
@@ -1366,56 +431,112 @@
             window.location = window.location.origin + window.location.pathname;
         }
 
-        return ( <div className="d-flex flex-column">
-            <ReactBootstrap.Tabs defaultActiveKey="jenga" id="tabs">
-                <ReactBootstrap.Tab eventKey="jenga" title="Jenga">
-                    <div lassName="d-flex flex-column justify-content-between">
+        return ( <div className="d-flex flex-column h-100 overflow-auto">
+            <ReactBootstrap.Tab.Container id="maintabs" defaultActiveKey="jenga" className="flex">
+                <ReactBootstrap.Container style={{height:"75px"}}>
+                    <ReactBootstrap.Nav variant="primary" className="flex-row justify-content-between">
+                        <ReactBootstrap.Navbar.Brand>Party Jenga</ReactBootstrap.Navbar.Brand>
+                        <ReactBootstrap.Stack className="align-middle" direction="horizontal">
+                            <ReactBootstrap.Dropdown>
+                                <ReactBootstrap.Dropdown.Toggle as={React.forwardRef(({children,onClick},ref) => ( <ReactBootstrap.Badge ref={ref} onClick={e => { e.preventDefault() ; onClick(e) } }>{preset} <i class="fas fa-chevron-down"></i></ReactBootstrap.Badge>)) } />
+                                <ReactBootstrap.Dropdown.Menu>
+                                    {_.map(userPresets,p => <ReactBootstrap.Dropdown.Item onClick={e => { selectPreset(p.name) } } >{p.name}</ReactBootstrap.Dropdown.Item>)}
+                                </ReactBootstrap.Dropdown.Menu>
+                            </ReactBootstrap.Dropdown>
+                        </ReactBootstrap.Stack>
+                    </ReactBootstrap.Nav>
+                    <ReactBootstrap.Nav variant="tabs" className="flex-row">
+                        <ReactBootstrap.Nav className="me-auto">
+                            <ReactBootstrap.Nav.Link eventKey="jenga">
+                                <i class="fas fa-keyboard" />
+                            </ReactBootstrap.Nav.Link>
+                            <ReactBootstrap.Nav.Link eventKey="fast">
+                                <i class="fas fa-dice" />
+                            </ReactBootstrap.Nav.Link>
+                            <ReactBootstrap.Nav.Link eventKey="choose">
+                                <i class="fas fa-sitemap" />
+                            </ReactBootstrap.Nav.Link>
+                            <ReactBootstrap.Nav.Link eventKey="list">
+                                <i class="fas fa-list" />
+                            </ReactBootstrap.Nav.Link>
+                            <ReactBootstrap.Nav.Link eventKey="config">
+                                <i class="fas fa-cog" />
+                            </ReactBootstrap.Nav.Link>
+                        </ReactBootstrap.Nav>
+                    </ReactBootstrap.Nav>
+                </ReactBootstrap.Container>
+
+                <ReactBootstrap.Tab.Content className="overflow-hidden d-flex flex-column">
+                    <JengaPane eventKey="jenga" title="Jenga">
                         <Jenga assignments={assignments}/>
-                        <ReactBootstrap.Navbar className="fixed-bottom" bg="light">
-                            <ReactBootstrap.Container>
-                                <ReactBootstrap.Navbar.Brand target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScXoZnWaCW5r-ZvZCmV5wn22WBZFQBPE4bsme51fSMyd-abZQ/viewform">Submit a Rule</ReactBootstrap.Navbar.Brand>
-                            </ReactBootstrap.Container>
-                        </ReactBootstrap.Navbar>
-                    </div>
-                </ReactBootstrap.Tab>
-                <ReactBootstrap.Tab eventKey="fast" title="Fast">
-                    <ReactBootstrap.Button onClick={() => setMessage(_.sample(data).rule)}>Click</ReactBootstrap.Button>
-                    <div>{message}</div>
-                </ReactBootstrap.Tab>
-                <ReactBootstrap.Tab eventKey="choose" title="521">
-                    <ReactBootstrap.Button onClick={() => setMessage(_.sample(data).rule)}>Click</ReactBootstrap.Button>
-                    <div>{message}</div>
-                </ReactBootstrap.Tab>
-                <ReactBootstrap.Tab eventKey="config" title="Config">
-                    <ReactBootstrap.Stack direction="horizontal" gap={2}>
-                        <ConfigPresetSelector custom value={preset} presets={userPresets} onChange={(preset) => selectPreset(preset)} />
-                        <ReactBootstrap.Button disabled={preset !== "custom"} variant="success" onClick={() => setShowSaveModal(true)}>
-                            <i class="fas fa-save"></i>
-                        </ReactBootstrap.Button>
-                        <ReactBootstrap.Button onClick={() => linkPreset(weights)}>
-                            <i class="fas fa-link"></i>
-                        </ReactBootstrap.Button>
-                        <ReactBootstrap.Button disabled={preset === "custom"} variant="danger" onClick={() => deletePreset(preset)}>
-                            <i class="fas fa-times"></i>
-                        </ReactBootstrap.Button>
-                    </ReactBootstrap.Stack>
-                    <ConfigArray value={weights} categories={categories} onChange={(weights) => configSelected(weights,null)} />
-                    <ReactBootstrap.Stack direction="horizontal" gap={2} className={"mt-4"}>
-                        <ReactBootstrap.Button variant="danger" onClick={resetPresets}>
-                            Reset Presets
-                        </ReactBootstrap.Button>
-                        <ReactBootstrap.Button variant="primary" onClick={() => prompt("Copy",JSON.stringify(userPresets,null,2))}>
-                            Copy Presets
-                        </ReactBootstrap.Button>
-                    </ReactBootstrap.Stack>
-                </ReactBootstrap.Tab>
-            </ReactBootstrap.Tabs>
+                    </JengaPane>
+                    <JengaPane eventKey="fast" title="Fast">
+                        <RuleDisplay rule={rule} />
+                        <ReactBootstrap.ButtonGroup vertical className="w-100">
+                            <ReactBootstrap.Button onClick={() => setRule(_.sample(weightedRules))}>
+                                <i class="fas fa-dice"></i>
+                                &nbsp;
+                                Random Rule
+                            </ReactBootstrap.Button>
+                        </ReactBootstrap.ButtonGroup>
+                    </JengaPane>
+                    <JengaPane eventKey="choose" title="Choose and Pass">
+                        <ChoiceGame rules={weightedRules} choices={5} />
+                    </JengaPane>
+                    <JengaPane eventKey="list" title="Rule Listing">
+                        {countRules(weightedRules).map(({rule,count}) => <RuleDisplay compact weight={count} rule={rule} />)}
+                    </JengaPane>
+                    <JengaPane eventKey="config" title="Configure">
+                        <ReactBootstrap.Stack direction="horizontal" gap={2}>
+                            <ConfigPresetSelector custom value={preset} presets={userPresets} onChange={(preset) => selectPreset(preset)} />
+                            <ReactBootstrap.Button disabled={preset !== "custom"} variant="success" onClick={() => setShowSaveModal(true)}>
+                                <i class="fas fa-save"></i>
+                            </ReactBootstrap.Button>
+                            <ReactBootstrap.Button onClick={() => linkPreset(weights)}>
+                                <i class="fas fa-link"></i>
+                            </ReactBootstrap.Button>
+                            <ReactBootstrap.Button disabled={preset === "custom"} variant="danger" onClick={() => deletePreset(preset)}>
+                                <i class="fas fa-times"></i>
+                            </ReactBootstrap.Button>
+                        </ReactBootstrap.Stack>
+                        <ConfigArray value={weights} categories={categories} onChange={(weights) => configSelected(weights,null)} />
+                        <ReactBootstrap.Stack direction="horizontal" gap={2} className={"mt-4"}>
+                            <ReactBootstrap.Button variant="danger" onClick={resetPresets}>
+                                Reset Presets
+                            </ReactBootstrap.Button>
+                            <ReactBootstrap.Button variant="primary" onClick={() => prompt("Copy",JSON.stringify(userPresets,null,2))}>
+                                Copy Presets
+                            </ReactBootstrap.Button>
+                        </ReactBootstrap.Stack>
+                    </JengaPane>
+                </ReactBootstrap.Tab.Content>
+            </ReactBootstrap.Tab.Container>
+
+            <ReactBootstrap.Navbar bg="light" style={{height:"40px"}}>
+                <ReactBootstrap.Container>
+                    <ReactBootstrap.Navbar.Brand target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScXoZnWaCW5r-ZvZCmV5wn22WBZFQBPE4bsme51fSMyd-abZQ/viewform">Submit a Rule</ReactBootstrap.Navbar.Brand>
+                </ReactBootstrap.Container>
+            </ReactBootstrap.Navbar>
+
             <SavePresetModal show={showSaveModal} userPresets={userPresets} onSave={(preset) => savePreset(preset,weights)} onHide={() => setShowSaveModal(false)} />
         </div> )
     }
 
-    const container = document.querySelector('#react');
-    ReactDOM.render(<App />, container);
+    $.get("./rules.tsv").then((text) => {
+        const [headerRow, ...rows] = _.map(text.split("\n"),line => _.map(line.split("\t"),s => s.trim()));
+        const header = _.map(headerRow,s => s.toLowerCase());
+        const data = _.map(rows,fields => {
+            return _.omitBy(_.zipObject(header,_.map(fields,v => {
+                if (v === "") return undefined;
+                const parsed = parseInt(v);
+                if (!isNaN(parsed)) return parsed;
+                return v;
+            })),_.isUndefined);
+        });
+
+        const container = document.querySelector('#react');
+        ReactDOM.render(<App data={data} />, container);
+    });
 </script>
 </head>
 
