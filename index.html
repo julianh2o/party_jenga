@@ -18,10 +18,35 @@
 
 <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script>
 
+<style type="text/css">
+.btn-toggle {
+    &:hover {
+      background-color: var(--bs-btn-bg);
+      color: var(--bs-btn-color);
+    }
+    &:focus {
+      background-color: var(--bs-btn-bg);
+      color: var(--bs-btn-color);
+    }
+    &.active {
+      &:hover {
+        background-color: var(--bs-btn-active-bg);
+        color: var(--bs-btn-active-color);
+      }
+      &:focus {
+        background-color: var(--bs-btn-active-bg);
+        color: var(--bs-btn-active-color);
+      }
+    }
+  }
+</style>
+
 <script type="text/javascript">
     const processData = data => {
         const categories = _.uniq(_.map(data,"category"));
+        const tags = _.uniq(_.flatten(_.map(data,"tags")));
         const flatWeights = _.zipObject(categories,_.map(categories,() => [1,1,1,1,1]));
+        const flatTagWeights = _.zipObject(tags,_.map(tags,() => [1,1,1,1,1]));
         const defaultPresets = [
             {
                 "name": "Flat",
@@ -32,32 +57,39 @@
                 "Drinking": [3, 3, 3, 4, 5],
                 "Gameplay": [1, 1, 1, 1, 1],
                 "Strip": [1.5, 1.5, 1.5, 0.5, 0.5],
-                "Truth": [1, 2, 2, 1.5, 1.5]
+                "Truth": [1, 2, 2, 1.5, 1.5],
+                ...flatTagWeights,
+                "duo": [0,0,0,0,0],
             }},
             {"name": "Round 2","weights": {
                 "Physical": [0.5, 4, 3, 3, 3],
                 "Drinking": [0, 0.75, 1.5, 1.5, 4],
                 "Gameplay": [0, 0, 0.75, 1, 1],
                 "Strip": [1, 1, 2, 3, 5],
-                "Truth": [0, 0, 0.5, 1, 1.5]
+                "Truth": [0, 0, 0.5, 1, 1.5],
+                ...flatTagWeights,
+                "duo": [0,0,0,0,0],
             }},
             {"name": "Round 3","weights":{
                 "Physical": [ 1, 2, 4, 4, 5 ],
                 "Drinking": [ 0.25, 0.25, 2, 2, 2 ],
                 "Gameplay": [ 0.75, 0.75, 0.75, 2, 3 ],
                 "Strip": [ 0, 0, 0.5, 0.5, 1 ],
-                "Truth": [ 0, 0, 0, 0.25, 1.5 ]
+                "Truth": [ 0, 0, 0, 0.25, 1.5 ],
+                ...flatTagWeights,
+                "duo": [0,0,0,0,0],
             }},
             {"name": "Duo","weights": {
                 "Physical": [ 0, 0, 0, 0, 0 ],
                 "Drinking": [ 0, 0, 0, 0, 0 ],
                 "Gameplay": [ 0, 0, 0, 0, 0 ],
                 "Strip": [ 1, 0, 0, 0, 0 ],
-                "Truth": [ 1, 1, 1, 1, 1 ]
+                "Truth": [ 1, 1, 1, 1, 1 ],
+                ...flatTagWeights,
             }},
         ];
 
-        return {categories, defaultPresets}
+        return {categories, defaultPresets, tags}
     }
 
     Storage.prototype.setObject = function(key, value) {
@@ -148,12 +180,44 @@
         </div> );
     }
 
+    function TagSelector(props) {
+        const tags = props.tags;
+        const weights = props.value;
+
+        const doChange = (tag, value) => {
+            console.log({tag,value})
+            const weightClone = _.cloneDeep(weights);
+            _.set(weightClone,`${tag}`,_.times(5,() => value));
+            props.onChange(weightClone);
+        }
+
+        return ( <div>
+            <span style={categoryStyle}>Tags</span>
+            <div gap="2">
+                { tags.map((tag) => <ReactBootstrap.ToggleButton
+                    className="btn-toggle"
+                    style={{margin: 4}}
+                    key={tag}
+                    type="checkbox"
+                    variant="outline-primary"
+                    value="1"
+                    checked={_.get(weights,`${tag}.0`,1) ? true : false}
+                    onClick={(e) => doChange(tag,_.get(weights,`${tag}.0`,1) ? 0 : 1)}
+                    >{tag}</ReactBootstrap.ToggleButton>) }
+            </div>
+        </div> );
+    }
+
     function createWeightedRules(rules,weights) {
         const lcm = leastCommonMultiple([1,..._.compact(_.flatten(Object.values(weights)))]);
         const integerWeights =_.mapValues(weights,(arr) => _.map(arr,w => w*lcm));
         const res = _.flatten(_.map(rules,(rule) => {
-            const ruleWeight = weights[rule.category][rule.level-1] * (rule.weight !== undefined ? rule.weight : 1);
-            return _.times(ruleWeight,() => rule);
+            const baseWeight = rule.weight !== undefined ? rule.weight : 1;
+            const categoryLevelWeight = weights[rule.category][rule.level-1];
+            const tagWeight = _.reduce(rule.tags,(product,tag) => product * _.get(weights,`${tag}.${rule.level-1}`,1),1);
+
+            const totalWeight = baseWeight * categoryLevelWeight * tagWeight;
+            return _.times(totalWeight,() => rule);
         }));
         return res;
     }
@@ -181,7 +245,12 @@
             onClick={props.onClick}
             >
             <ReactBootstrap.Card.Body className={props.compact ? "p-1" : ""}>
+                <ReactBootstrap.Stack direction="horizontal">
                 {props.tile && <ReactBootstrap.Card.Title>Tile {props.tile}</ReactBootstrap.Card.Title>}
+                {props.backClicked && <ReactBootstrap.Button style={{ height: "42px", width: "42px"}} className="ms-auto" onClick={props.backClicked}>
+                    <i class="fas fa-undo"></i>
+                </ReactBootstrap.Button>}
+                </ReactBootstrap.Stack>
                 {(props.rule || props.weight) && <div>
                     {props.weight && <ReactBootstrap.Badge bg="primary" className="mx-1" >{props.weight}x</ReactBootstrap.Badge> }
                     <ReactBootstrap.Badge bg="secondary" className="mx-1" >{props.rule.category} {props.rule.level}</ReactBootstrap.Badge>
@@ -195,26 +264,39 @@
         const assignments = props.assignments;
         const [jenga,setJenga] = React.useState(null);
         const [ruleDisplay,setRuleDisplay] = React.useState(null);
+        console.log(ruleDisplay);
         return ( <div>
             { !jenga && !ruleDisplay && <Keypad onSubmit={(value) => setJenga(value)} /> }
-            { jenga  && !ruleDisplay && <div>
-                <RuleDisplay tile={jenga} />
+            { jenga && <div>
+                <RuleDisplay tile={jenga} backClicked={() => { setJenga(null) ; setRuleDisplay(null) }}/>
                 <ReactBootstrap.ButtonGroup vertical className="w-100">
-                    { Object.values(assignments[jenga-1]).map(rule => <ReactBootstrap.Button onClick={() => setRuleDisplay(rule)} style={bigButtons} className="mb-2" key={rule.category}>{rule.category} {rule.level}</ReactBootstrap.Button>)}
+                    { Object.values(assignments[jenga-1]).map(rule => <ReactBootstrap.Stack>
+                        { rule === ruleDisplay 
+                            ? <RuleDisplay rule={rule} selected={true} />
+                            : <ReactBootstrap.Button
+                                onClick={() => setRuleDisplay(rule)}
+                                style={bigButtons}
+                                className="mb-2"
+                                key={rule.category}>
+                                    {rule.category} {rule.level}
+                            </ReactBootstrap.Button>
+                        }
+                    </ReactBootstrap.Stack>)}
                     <ReactBootstrap.Button style={bigButtons} onClick={() => setRuleDisplay(_.sample(Object.values(assignments[jenga-1])))}>
                         <i class="fas fa-dice"></i>
                     </ReactBootstrap.Button>
                 </ReactBootstrap.ButtonGroup>
             </div>}
-            { jenga && ruleDisplay &&  <div>
-                <RuleDisplay tile={jenga} rule={ruleDisplay} />
-                <ReactBootstrap.ButtonGroup vertical className="w-100">
-                    <ReactBootstrap.Button className="mb-2" onClick={() => { setRuleDisplay(null) }} style={bigButtons}>Back</ReactBootstrap.Button>
-                    <ReactBootstrap.Button className="mb-2" onClick={() => { setJenga(null) ; setRuleDisplay(null) }} style={bigButtons}>New tile</ReactBootstrap.Button>
-                </ReactBootstrap.ButtonGroup>
-            </div> }
         </div>);
     }
+
+            // { jenga && ruleDisplay &&  <div>
+            //     <RuleDisplay tile={jenga} rule={ruleDisplay} backClicked={() => { setJenga(null) ; setRuleDisplay(null) }} />
+            //     <ReactBootstrap.ButtonGroup vertical className="w-100">
+            //         <ReactBootstrap.Button className="mb-2" onClick={() => { setRuleDisplay(null) }} style={bigButtons}>Back</ReactBootstrap.Button>
+            //         <ReactBootstrap.Button className="mb-2" onClick={() => { setJenga(null) ; setRuleDisplay(null) }} style={bigButtons}>New tile</ReactBootstrap.Button>
+            //     </ReactBootstrap.ButtonGroup>
+            // </div> }
 
     const sampleRules = (rules,n) => {
         const choices = [];
@@ -349,7 +431,7 @@
     function App(props) {
         const jengaChoices = 3;
         const data = props.data;
-        const {defaultPresets, categories} = processData(data);
+        const {defaultPresets, categories, tags: allTags} = processData(data);
 
         const [weights,setWeights] = React.useState(localStorage.getObject("weights") || _.first(defaultPresets).weights);
         const [weightedRules,setWeightedRules] = React.useState(createWeightedRules(data,weights));
@@ -369,6 +451,7 @@
         },[]);
 
         React.useEffect(() => {
+            window.weights = weights;
             setWeightedRules(createWeightedRules(data,weights));
         },[weights]);
 
@@ -500,6 +583,7 @@
                             </ReactBootstrap.Button>
                         </ReactBootstrap.Stack>
                         <ConfigArray value={weights} categories={categories} onChange={(weights) => configSelected(weights,null)} />
+                        <TagSelector value={weights} tags={allTags} onChange={(weights) => configSelected(weights,null)} />
                         <ReactBootstrap.Stack direction="horizontal" gap={2} className={"mt-4"}>
                             <ReactBootstrap.Button variant="danger" onClick={resetPresets}>
                                 Reset Presets
@@ -522,17 +606,24 @@
         </div> )
     }
 
+    function getValue(k,v) {
+        if (k === "tags") return v === "" ? [] : v.split(";");
+        if (v === "") return undefined;
+        const parsed = parseInt(v);
+        if (!isNaN(parsed)) return parsed;
+        return v;
+    }
+
     $.get("./rules.tsv").then((text) => {
-        const [headerRow, ...rows] = _.map(text.split("\n"),line => _.map(line.split("\t"),s => s.trim()));
+        const [headerRow, ...rows] = _.map(_.compact(text.split("\n")),line => _.map(line.split("\t"),s => s.trim()));
         const header = _.map(headerRow,s => s.toLowerCase());
-        const data = _.map(rows,fields => {
-            return _.omitBy(_.zipObject(header,_.map(fields,v => {
-                if (v === "") return undefined;
-                const parsed = parseInt(v);
-                if (!isNaN(parsed)) return parsed;
-                return v;
-            })),_.isUndefined);
-        });
+        const data = _.map(rows,fields => _.fromPairs(_.compact(_.map(_.zip(header,fields),([k,v]) => {
+            const calculated = getValue(k,v);
+            console.log({k,v,calculated});
+            if  (!calculated) return null;
+            return [k,calculated]
+        }))));
+        console.log({data});
 
         const container = document.querySelector('#react');
         ReactDOM.render(<App data={data} />, container);

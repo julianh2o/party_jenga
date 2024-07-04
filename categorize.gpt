@@ -1,0 +1,13 @@
+Please populate additional fields according to the list of questions that follow.
+
+The "Tag" field contains any number of tags from this list separated by a semicolon
+duo: Questions that are primarily appropriate for two people
+nsfw: Questions that are sexual or adult themed in nature
+silly: Questions that are playful or silly in nature
+serious: Questions that are serious or deep in nature
+
+The "Level" field contains a number 1 to 5 that represents the intensity of the question. A higher number represents a question that is more personal, difficult to answer, sensitive, or probing.
+
+Please respond in pipe "|" delimited CSV format and clean up any spurious characters or spaces in the input.
+
+Here are the questions:
