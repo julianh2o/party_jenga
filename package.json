@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "rules": "python importDataFromSheet.py",
-    "start": "python -m http.server 9000"
+    "start": "python -m http.server 9000",
+    "deploy": "scp index.html rules.tsv julianh2o@julianhartline.com:/home/julianh2o/julianhartline.com/jenga"
   },
   "author": "",
   "license": "ISC"

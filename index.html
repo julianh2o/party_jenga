@@ -53,27 +53,28 @@
                 "weights": flatWeights
             },
             {"name": "Round 1","weights": {
-                "Physical": [2, 3, 3, 0.25, 0],
-                "Drinking": [3, 3, 3, 4, 5],
+                "Physical": [3, 2, 1, 0.25, 0],
+                "Drinking": [2, 2, 2, 3, 3],
                 "Gameplay": [1, 1, 1, 1, 1],
                 "Strip": [1.5, 1.5, 1.5, 0.5, 0.5],
                 "Truth": [1, 2, 2, 1.5, 1.5],
                 ...flatTagWeights,
                 "duo": [0,0,0,0,0],
             }},
+            {"name":"Julian","weights":{"Physical":[2,3,1,1,0.75],"Drinking":[0,0.75,1,1,2],"Gameplay":[0.75,0.75,0.75,0.75,0.75],"Strip":[2,1,1,1,1],"Truth":[1,1,1,1.5,2],"darkroom":[0,0,0,0,0],"duo":[0,0,0,0,0],"nsfw":[1,1,1,1,1],"kissing":[1,1,1,1,1],"silly":[0,0,0,0,0],"serious":[1,1,1,1,1]}},
             {"name": "Round 2","weights": {
-                "Physical": [0.5, 4, 3, 3, 3],
-                "Drinking": [0, 0.75, 1.5, 1.5, 4],
+                "Physical": [0.5, 3, 2, 2, 1],
+                "Drinking": [0, 0.75, 1.5, 1.5, 2],
                 "Gameplay": [0, 0, 0.75, 1, 1],
-                "Strip": [1, 1, 2, 3, 5],
+                "Strip": [1, 1, 2, 2, 3],
                 "Truth": [0, 0, 0.5, 1, 1.5],
                 ...flatTagWeights,
                 "duo": [0,0,0,0,0],
             }},
             {"name": "Round 3","weights":{
-                "Physical": [ 1, 2, 4, 4, 5 ],
+                "Physical": [ 1, 2, 2, 3, 3 ],
                 "Drinking": [ 0.25, 0.25, 2, 2, 2 ],
-                "Gameplay": [ 0.75, 0.75, 0.75, 2, 3 ],
+                "Gameplay": [ 0, 0, 0.75, 0.75, 0.75 ],
                 "Strip": [ 0, 0, 0.5, 0.5, 1 ],
                 "Truth": [ 0, 0, 0, 0.25, 1.5 ],
                 ...flatTagWeights,
@@ -572,6 +573,9 @@
                     <JengaPane eventKey="config" title="Configure">
                         <ReactBootstrap.Stack direction="horizontal" gap={2}>
                             <ConfigPresetSelector custom value={preset} presets={userPresets} onChange={(preset) => selectPreset(preset)} />
+                            <ReactBootstrap.Button variant="primary" onClick={() => prompt("Copy",JSON.stringify({"name":preset,weights}))}>
+                                <i class="fas fa-copy"></i>
+                            </ReactBootstrap.Button>
                             <ReactBootstrap.Button disabled={preset !== "custom"} variant="success" onClick={() => setShowSaveModal(true)}>
                                 <i class="fas fa-save"></i>
                             </ReactBootstrap.Button>
@@ -587,9 +591,6 @@
                         <ReactBootstrap.Stack direction="horizontal" gap={2} className={"mt-4"}>
                             <ReactBootstrap.Button variant="danger" onClick={resetPresets}>
                                 Reset Presets
-                            </ReactBootstrap.Button>
-                            <ReactBootstrap.Button variant="primary" onClick={() => prompt("Copy",JSON.stringify(userPresets,null,2))}>
-                                Copy Presets
                             </ReactBootstrap.Button>
                         </ReactBootstrap.Stack>
                     </JengaPane>
